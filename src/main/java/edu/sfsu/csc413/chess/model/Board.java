@@ -1,5 +1,6 @@
 package edu.sfsu.csc413.chess.model;
 
+import edu.sfsu.csc413.chess.factory.PieceFactory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,38 @@ public class Board {
 
     public void place(Position position, Piece piece) {
         squares[position.file()][position.rank()] = piece;
+    }
+
+    /**
+     * Applies a move without checking whether the move is legal.
+     *
+     * <p>Game is responsible for deciding whether a move is allowed.
+     * Board only stores the resulting position.
+     *
+     * <p>For a promotion, the pawn is replaced by a new piece of the
+     * promoted type and the pawn's colour.
+     */
+    public void apply(Move move) {
+        place(move.from(), null);
+
+        Piece piece = move.moved();
+
+        if (move.isPromotion()) {
+            piece = PieceFactory.create(
+                    move.promotesTo(),
+                    move.moved().color());
+        }
+
+        place(move.to(), piece);
+    }
+
+    /**
+     * Undoes a move by restoring the moved piece to its original square
+     * and restoring the captured piece, if any, to the destination square.
+     */
+    public void undo(Move move) {
+        place(move.from(), move.moved());
+        place(move.to(), move.captured());
     }
 
     public List<Position> positionsOf(Color color) {
