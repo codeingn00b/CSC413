@@ -67,9 +67,24 @@ public class Board {
                 }
             }
         }
-
         return positions;
     }
+        /**
+         * Returns the position of the king of the specified color.
+         *
+         * @param color the color of the king to find
+         * @return the king's position, or null if the king is not on the board
+         */
+    public Position kingPosition(Color color) {
+        for (Position position : positionsOf(color)) {
+            Piece piece = pieceAt(position);
+            if (piece.type() == PieceType.KING) {return position;}
+            }
+            return null;
+    }
+
+
+
 
     @Override
     public String toString() {
