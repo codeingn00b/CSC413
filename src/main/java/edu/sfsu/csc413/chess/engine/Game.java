@@ -89,6 +89,23 @@ public class Game {
     }
 
     /**
+     * Returns the current status of the game.
+     *
+     * @return the current game status
+     */
+    public GameStatus status() {
+        return MoveGenerator.status(board, sideToMove);
+    }
+
+    /**
+     * Returns whether the game has ended.
+     *
+     * @return true if the game is over
+     */
+    public boolean isGameOver() {
+        return status().isGameOver();
+    }
+    /**
      * Plays a move and passes the turn.
      *
      * @throws IllegalArgumentException if the move is not currently legal —
