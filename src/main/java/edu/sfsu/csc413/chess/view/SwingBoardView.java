@@ -165,7 +165,7 @@ public class SwingBoardView implements BoardView {
 
         return label;
     }
-    
+
     /**
      * Handles a click on one board square.
      */
@@ -254,8 +254,8 @@ public class SwingBoardView implements BoardView {
             setMessage("This piece has no legal moves.");
         } else {
             setMessage(
-                    "Selected " + position
-                            + ". Legal destinations are highlighted.");
+                    "Selected " + position+". The "
+                            + legalDestinations.size()+" legal destinations are highlighted.");
         }
     }
 
