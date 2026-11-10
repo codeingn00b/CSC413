@@ -1,7 +1,7 @@
 # CSC 413 Milestone 7 Submission Report
 
 **Project:** CSC 413 Chess Engine
-**Milestone:** M7 ??Swing and Additional Board Views
+**Milestone:** M7 Swing and Additional Board Views
 **Student:** Hsuan-Lu Yang
 **Date:** November 2026
 
@@ -73,7 +73,7 @@ The instructions require coding agents to:
 
 The instructions also identify the permitted files and require the implementation to stop rather than modify protected files if a requirement cannot be satisfied within the restrictions.
 
-## 4. Run 1 ??Baseline Implementation
+## 4. Run 1 Baseline Implementation
 
 **Branch:** `m7-run-1`
 **Commit:** `b413ce6 M7 Run 1: baseline Swing and terminal views`
@@ -132,7 +132,7 @@ Manual checks included:
 
 The baseline test suite contained 83 tests, and the recorded Run 1 validation passed.
 
-## 5. Run 2 ??Highlight Legal Destinations
+## 5. Run 2 Highlight Legal Destinations
 
 **Branch:** `m7-run-2`
 **Commit:** `af4f749 M7 Run 2: highlight legal destinations`
@@ -172,7 +172,7 @@ Recorded Run 2 validation:
 - Manual selection test for the white knight on `g1`: only `f3` and `h3` were highlighted.
 - Manual selection test for the white knight on `b1`: only `a3` and `c3` were highlighted.
 
-## 6. Run 3 ??Swing Board Coordinate Labels
+## 6. Run 3 Swing Board Coordinate Labels
 
 **Branch:** `m7-run-3`
 **Commit:** `97c00a5 M7 Run 3: add Swing board coordinates`
@@ -288,7 +288,7 @@ I reviewed the Swing and Terminal implementations to verify that they follow the
 ### 9.1 Legal destination calculation
 
 **File:** `src/main/java/edu/sfsu/csc413/chess/view/SwingBoardView.java`
-**Lines:** 231??58
+**Lines:** 231 58
 **Function:** `selectOwnPiece(...)`
 
 The method clears the previous destination collection and obtains legal moves from `currentGame.legalMoves()`.
@@ -302,7 +302,7 @@ It filters moves by the selected piece's source position and stores the matching
 ### 9.2 Selection handling and move validation
 
 **File:** `src/main/java/edu/sfsu/csc413/chess/view/SwingBoardView.java`
-**Lines:** 172??24
+**Lines:** 172 24
 **Function:** `handleSquareClick(Position clickedPosition)`
 
 The click handler manages piece selection, selection cancellation, selecting another friendly piece, and destination clicks.
@@ -316,7 +316,7 @@ It checks the selected piece's legal destinations before submitting a move.
 ### 9.3 Selection cleanup
 
 **File:** `src/main/java/edu/sfsu/csc413/chess/view/SwingBoardView.java`
-**Lines:** 265??68
+**Lines:** 265 68
 **Function:** `clearSelection()`
 
 The method clears the selected position and the legal destination collection.
@@ -328,23 +328,23 @@ The method clears the selected position and the legal destination collection.
 ### 9.4 Coordinate label layout
 
 **File:** `src/main/java/edu/sfsu/csc413/chess/view/SwingBoardView.java`
-**Lines:** 78??30
+**Lines:** 78 30
 **Function:** Swing board construction
 
 The board layout includes file labels along the top and bottom and rank labels on both sides.
 
 The existing square components remain associated with their original file and rank positions.
 
-**Additional method:** `createCoordinateLabel(String text)`, lines 161??69.
+**Additional method:** `createCoordinateLabel(String text)`, lines 161 69.
 
 **Decision:** Adapted the coordinate-label idea from Run 3 while retaining the Run 2 board interaction and selection logic.
 
-**Validation:** Manually checked the displayed coordinates against the board: files `a`?h` align with their columns, and ranks `8`?1` align with their rows.
+**Validation:** Manually checked the displayed coordinates against the board: files `a to h` align with their columns, and ranks `8 to 1` align with their rows.
 
 ### 9.5 Terminal view game status
 
 **File:** `src/main/java/edu/sfsu/csc413/chess/view/TerminalBoardView.java`
-**Lines:** 50??2
+**Lines:** 502
 **Functions:** `render(Game game)` and its board-rendering logic
 
 The Terminal view displays the board and current side to move, and obtains the displayed game status from `game.status()`.
@@ -356,7 +356,7 @@ The Terminal view displays the board and current side to move, and obtains the d
 ### 9.6 Terminal legal-move listing and input
 
 **File:** `src/main/java/edu/sfsu/csc413/chess/view/TerminalBoardView.java`
-**Lines:** 116??72
+**Lines:** 116 72
 **Function:** `nextAction(Game game)`
 
 The method obtains legal moves through `game.legalMoves()`, presents available moves, and converts the user's selected move into a `PlayerAction.Move`.
