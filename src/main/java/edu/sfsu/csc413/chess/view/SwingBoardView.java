@@ -41,6 +41,9 @@ public class SwingBoardView implements BoardView {
     private static final java.awt.Color LEGAL_DESTINATION =
             new java.awt.Color(130, 190, 115);
 
+    private static final java.awt.Color COORDINATE_COLOR =
+            new java.awt.Color(90, 90, 90);
+
     private final JButton[][] squares = new JButton[8][8];
 
     private GameController controller;
@@ -69,9 +72,26 @@ public class SwingBoardView implements BoardView {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout(8, 8));
 
-        JPanel boardPanel = new JPanel(new GridLayout(8, 8));
+        JPanel boardPanel = new JPanel(new GridLayout(10, 10, 0, 0));
 
+        // Top coordinate row.
+        boardPanel.add(createCoordinateLabel(""));
+
+        for (int file = 0; file < 8; file++) {
+            boardPanel.add(
+                    createCoordinateLabel(
+                            String.valueOf((char) ('a' + file))));
+        }
+
+        boardPanel.add(createCoordinateLabel(""));
+
+        // Eight board rows, rank 8 through rank 1.
         for (int rank = 7; rank >= 0; rank--) {
+
+            // Left-side rank label.
+            boardPanel.add(createCoordinateLabel(
+                    String.valueOf(rank + 1)));
+
             for (int file = 0; file < 8; file++) {
                 final int squareFile = file;
                 final int squareRank = rank;
@@ -88,10 +108,26 @@ public class SwingBoardView implements BoardView {
                         handleSquareClick(
                                 new Position(squareFile, squareRank)));
 
+                // Keep Run 2's original file/rank indexing.
                 squares[file][rank] = button;
                 boardPanel.add(button);
             }
+
+            // Right-side rank label.
+            boardPanel.add(createCoordinateLabel(
+                    String.valueOf(rank + 1)));
         }
+
+        // Bottom coordinate row.
+        boardPanel.add(createCoordinateLabel(""));
+
+        for (int file = 0; file < 8; file++) {
+            boardPanel.add(
+                    createCoordinateLabel(
+                            String.valueOf((char) ('a' + file))));
+        }
+
+        boardPanel.add(createCoordinateLabel(""));
 
         JPanel informationPanel =
                 new JPanel(new GridLayout(3, 1, 4, 4));
@@ -122,6 +158,14 @@ public class SwingBoardView implements BoardView {
         frame.setVisible(true);
     }
 
+    private JLabel createCoordinateLabel(String text) {
+        JLabel label = new JLabel(text, SwingConstants.CENTER);
+        label.setFont(new Font("SansSerif", Font.BOLD, 14));
+        label.setForeground(COORDINATE_COLOR);
+
+        return label;
+    }
+    
     /**
      * Handles a click on one board square.
      */
